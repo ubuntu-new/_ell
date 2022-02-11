@@ -1,0 +1,238 @@
+html,
+body {
+    height: 100%;
+    font-size: 16px !important;
+    line-height: 18px !important;
+    font-family: din_light !important;
+}
+/* Typography resets */
+div,
+dl,
+dt,
+dd,
+ul,
+ol,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+pre,
+form,
+p,
+blockquote,
+th,
+td {
+    margin: 0;
+    padding: 0;
+    direction: ltr; }
+
+/* Default Link Styles */
+a {
+    color: #008cba;
+    text-decoration: none;
+    line-height: inherit; }
+a:hover, a:focus {
+    color: #0079a1; }
+a img {
+    border: none; }
+
+/* Default paragraph styles */
+p {
+    font-family: inherit;
+    font-weight: normal;
+    line-height: 16px;
+    margin-bottom: 1.25rem;
+    text-rendering: optimizeLegibility; }
+p aside {
+    font-size: 14px;
+    line-height: 16px;
+    font-style: italic; }
+
+/* Default header styles */
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    color: #222222;
+    text-rendering: optimizeLegibility;
+    margin-top: 0.2rem;
+    margin-bottom: 0.5rem;
+    line-height: 1.4; }
+h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
+    font-size: 60%;
+    color: #6f6f6f;
+    line-height: 0; }
+li {
+    /*list-style: none;*/
+    font-weight: normal !important;
+    padding-bottom: 5px !important;
+    text-align: justify !important;
+    font-family: din_light !important;
+    font-size:1.05em;
+}
+.wrap {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -60px;
+    padding: 0 0 60px;
+}
+
+.wrap > .container {
+    padding: 70px 15px 20px;
+}
+
+.footer {
+    height: 60px;
+    background-color: #f5f5f5;
+    border-top: 1px solid #ddd;
+    padding-top: 20px;
+}
+.container-fluid
+{
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+}
+.row
+{
+    max-width: 100% !important;
+}
+
+.jumbotron {
+    text-align: center;
+    background-color: transparent;
+}
+
+.jumbotron .btn {
+    font-size: 21px;
+    padding: 14px 24px;
+}
+
+.not-set {
+    color: #c55;
+    font-style: italic;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: /*"\e113"*/ "\e151";
+}
+
+a.desc:after {
+    content: /*"\e114"*/ "\e152";
+}
+
+.sort-numerical a.asc:after {
+    content: "\e153";
+}
+
+.sort-numerical a.desc:after {
+    content: "\e154";
+}
+.sort-ordinal a.asc:after {
+    content: "\e155";
+}
+.sort-ordinal a.desc:after {
+    content: "\e156";
+}
+.grid-view th {
+    white-space: nowrap;
+}
+.hint-block {
+    display: block;
+    margin-top: 5px;
+    color: #999;
+}
+.error-summary {
+    color: #a94442;
+    background: #fdf7f7;
+    border-left: 3px solid #eed3d7;
+    padding: 10px 20px;
+    margin: 0 0 15px 0;
+}
+.numerebi
+{
+    height: 250px !important;
+}
+/* align the logout "link" (button in form) of the navbar */
+.nav li > form > button.logout {
+    padding: 15px;
+    border: none;
+}
+
+@media(max-width:767px) {
+    .nav li > form > button.logout {
+        display:block;
+        text-align: left;
+        width: 100%;
+        padding: 10px 15px;
+    }
+}
+
+.nav > li > form > button.logout:focus,
+.nav > li > form > button.logout:hover {
+    text-decoration: none;
+}
+
+.nav > li > form > button.logout:focus {
+    outline: none;
+}
+
+
+.col-sq-4:before,
+.col-sq-8:before {
+    content: '';
+    width: 0;
+}
+.abs-div {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+
+.col-sq-4:before,
+.col-sq-8:before,
+.ib {
+    white-space: normal;
+    display: inline-block;
+    vertical-align: middle;
+    max-width: 100%;
+
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.col-sq-4:before {
+    padding-top: 100%;
+    /* makes expand to a square */
+}
+
+.col-sq-8:before {
+    padding-top: 50%;
+    /* makes a rectangle half the height of a square */
+}
+
+[class^="col"] {
+    /*white-space: nowrap;*/
+    box-sizing: border-box;
+    padding: 0;
+    background-size: cover;
+}

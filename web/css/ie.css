@@ -1,0 +1,126 @@
+@charset "UTF-8";
+/* General */
+.pulse {
+  display: none;
+}
+
+.page-title {
+  padding-bottom: 30px;
+}
+
+.page-title-shadow {
+  display: none;
+}
+
+#bg-projects {
+  background-color: #dbdbdb;
+}
+
+.accordion, .tabs {
+  display: none;
+}
+
+.full-row {
+  width: 100% !important;
+}
+
+/* Main Menu -------------------------------------------------------- */
+/* .menu-wrap {
+position: fixed;
+z-index: 99999999;
+top: 0;
+height: 60px;
+width: 100%;
+background-color: white;
+-webkit-box-shadow: 0 1px 1px rgba(6,8,8,0.1);
+box-shadow: 0 1px 1px rgba(6,8,8,0.1);
+} */
+.pattern {
+  overflow: visible;
+}
+
+a.menu-link {
+  display: none;
+}
+
+.js .menu, .js .menu > ul ul {
+  max-height: none;
+  overflow: visible;
+  background: none;
+  right: 12em;
+}
+
+.js .menu > ul ul {
+  background: black;
+  display: none;
+}
+.js .menu > ul ul a {
+  color: white;
+}
+
+.js .menu > ul li:hover > ul {
+  display: block;
+}
+
+.menu ul {
+  margin: 0 0 0 -0.25em;
+  border: 0;
+}
+
+.menu li a {
+  border: 0;
+}
+
+.menu .level-1 > li.has-subnav > a:after {
+  content: "▼";
+  font-size: 12px;
+  padding: 20px 10px 0px 0px;
+}
+
+.menu > ul > li {
+  display: inline-block;
+  border-left: 2px solid #f1f1f1;
+  margin-right: -5px;
+  position: relative;
+}
+
+.menu > ul > li:last-child {
+  margin-right: 0px;
+}
+
+.menu > ul ul {
+  position: absolute;
+  top: 0;
+  width: 12em;
+  z-index: 999999;
+}
+
+.menu > ul ul li {
+  position: relative;
+}
+
+.menu > ul ul.level-2 {
+  top: 59px;
+  right: 0;
+}
+
+.bc-nav #menu {
+  clear: none;
+  float: right;
+}
+
+.nav-tagline {
+  display: block;
+  float: left;
+  color: #959595;
+  margin: 0;
+  font-style: italic;
+  padding: 17px 0px 17px 30px;
+}
+
+@media screen and (max-width: 67.25em) {
+  .nav-tagline {
+    display: none;
+  }
+}
+/* Index.html */

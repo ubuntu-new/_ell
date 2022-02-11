@@ -1,0 +1,94 @@
+.slick-slide {
+    outline: none !important;
+}
+
+.ds-container-partner {
+    display: -webkit-box;
+    display: -moz-box;
+    /*display: -webkit-flexbox;*/
+    /*display: -ms-flexbox;*/
+    /*display: -webkit-flex;*/
+    /*display: flex;*/
+    min-height: 600px;
+}
+
+.ds-main-container-partner, .ds-items-container-partner {
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    -webkit-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+}
+.ds-main-name-partner
+{
+    color: #ffffff !important;
+}
+.ds-main-title-partner > h3
+{
+    color: white !important;
+}
+.ds-main-desc-partner > h3
+{
+    color: white !important;
+}
+.ds-main-container-partner {
+    color: #fff;
+    background-color: #1d386b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ds-main-img-partner {
+    width: 70%;
+    max-width: 250px;
+    display: none;
+    position: relative;
+    margin: auto;
+}
+
+.ds-main-title-partner, .ds-main-desc-partner {
+    color: #FFFFFF;
+    font-size: 18px;
+    text-align: justify;
+    line-height: 22px;
+    font-family: Nexa;
+}
+
+.ds-items-container-partner {
+    background-color: #f2f2f2;
+    padding: 20px 30px !important;
+}
+
+.ds-item-partner {
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+.ds-item-partner > h2 {
+    text-align: center;
+}
+
+.ds-item-partner .img {
+    width: 100%;
+    /*height: 50px;*/
+}
+
+.ds-dots-partner {
+    text-align: center;
+    padding: 0;
+    margin: 0;
+}
+
+.ds-dots-partner li {
+    width: 24px;
+    height: 24px;
+    border-radius: 100%;
+    cursor: pointer;
+    background-color: #fff;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.ds-dots-partner .slick-active {
+    background-color: #e22140 !important;
+}
