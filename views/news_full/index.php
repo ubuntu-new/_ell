@@ -23,6 +23,7 @@ $lang_id = Yii::$app->language;
 
 <div class="page">
     <div class="row">
+        <div class="container">
 <?php
 $news = \app\models\News::find()->orderBy(['id' => SORT_DESC])->where(['visible' => '1'])->all();
 $newstxt = \app\models\Newstxt::findAll(['visible' => '1']);
@@ -44,9 +45,9 @@ if ($lang_id == 'en-US') {
         <h1 class="ds-main-name uppercase text-left"
             style="color:#1D386B  !important; font-family: <?= $font_family ?>">
             &nbsp;
-        </h1>
-    </div><!-- Row Ends -->
+    <!-- Row Ends -->
     <div class="row">
+
     <?php foreach ($news as $row) { ?>
         <?php
         if ($lang_id == 'ka-GE') {
@@ -65,7 +66,7 @@ if ($lang_id == 'en-US') {
         <div class="large-4 four columns">
             <a data-fancybox data-animation-duration="700" style="font-family:<?= $font_family ?>" data-src="#newsModal<?= $row->id ?>" href="javascript:;" class="provideLink">
                 <div class="thumbnail">
-                    <?php $pathnews = 'uploads/news/' . $row['img'] ?>
+                    <?php $pathnews = '../uploads/news/' . $row['img'] ?>
                     <?= Html::img($pathnews, ['alt' => $newsTitle,  'style' => '  max-height: 190px;width: 100%;object-fit: cover;']); ?>
                     <div class="caption" style="height: 335px; overflow: hidden;">
                         <h3  style="color: #1D386B !important;font-family: <?= $font_family ?>;"><?= str_replace("\\", "",$newsTitle) ?></h3>
@@ -78,7 +79,7 @@ if ($lang_id == 'en-US') {
         <div style="display: none; border-radius: 0px !important; padding: 0px !important;" id="newsModal<?= $row->id ?>" class="animated-modal modaluriza">
             <div class="large-12 twelve columns" style=" min-height: 350px; padding-left: 0px !important; padding-right: 0px !important;">
                 <div style="position: relative; top: 30px ;width: 100%; padding: 0 20px">
-                    <?php $pathnews = 'uploads/news/' . $row['img'] ?>
+                    <?php $pathnews = '../uploads/news/' . $row['img'] ?>
                     <?= Html::img($pathnews, ['alt' => $newsTitle,  'style' => 'max-width: 600px; max-height: 400;object-fit: cover; float:left; margin:0 30px 30px 0']); ?>
                     <h1 style="color: #1D386B !important;font-family: <?= $font_family ?>;"><?= str_replace("\\", "",$newsTitle) ?></h1>
                     <p style="font-family:bpgAlgeti !important"><?= $newsDesc; ?></p>
@@ -88,4 +89,5 @@ if ($lang_id == 'en-US') {
     <?php } ?>
 
         </div>
+</div>
 </div><!-- Page Ends -->
