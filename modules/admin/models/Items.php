@@ -85,8 +85,8 @@ class Items extends \yii\db\ActiveRecord
 
     public function upload(){
         if($this->validate()){
-            $path = 'uploads/img/'. $this->img->baseName . '.' . $this->image->extension;
-            $this->image->saveAs($path);
+            $path = 'uploads/team/'. $this->img->baseName . '.' . $this->img->extension;
+            $this->img->saveAs($path);
             $this->attachImage($path);
             @unlink($path);
             return true;

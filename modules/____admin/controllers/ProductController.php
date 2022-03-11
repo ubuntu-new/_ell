@@ -2,19 +2,17 @@
 
 namespace app\modules\admin\controllers;
 
-use app\modules\admin\models\Team;
 use Yii;
-use app\modules\admin\models\Items;
-use app\modules\admin\models\teamsSearch;
+use app\modules\admin\models\Product;
+use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
 
 /**
- * TeamsController implements the CRUD actions for Items model.
+ * ProductController implements the CRUD actions for Product model.
  */
-class TeamsController extends Controller
+class ProductController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -32,22 +30,22 @@ class TeamsController extends Controller
     }
 
     /**
-     * Lists all Items models.
+     * Lists all Product models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new teamsSearch();
-        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        $dataProvider = new ActiveDataProvider([
+            'query' => Product::find(),
+        ]);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Displays a single Items model.
+     * Displays a single Product model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -60,26 +58,15 @@ class TeamsController extends Controller
     }
 
     /**
-     * Creates a new Items model.
+     * Creates a new Product model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Items();
+        $model = new Product();
 
-        $newImg =  $model->img;
-
-        if ($model->load(Yii::$app->request->post())) {
-            $model->img = UploadedFile::getInstance($model, 'img');
-            $model->item_key = "TEAM";
-            $model->save();
-            if ($model->save()){
-                if(isset($newImg)){
-                    $newImg->saveAs('uploads/team/' .$newImg);
-                }
-            }
-
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -89,7 +76,7 @@ class TeamsController extends Controller
     }
 
     /**
-     * Updates an existing Items model.
+     * Updates an existing Product model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -98,29 +85,8 @@ class TeamsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        $oldImg = $model->img;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $newImg = UploadedFile::getInstance($model,'img');
-
-            if(isset($newImg)){
-                $model->img = $newImg;
-            }
-            else{
-                $model->img = $oldImg;
-            }
-            if ($model->save()){
-                if(isset($newImg)){
-                    $newImg->saveAs('uploads/team/' .$newImg);
-                }
-            }
-            //$model->img = UploadedFile::getInstance($model, 'img's);
-            //var_dump($model->img);
-
-
-            //$model->save();
-            //$model->upload();
-
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -130,7 +96,7 @@ class TeamsController extends Controller
     }
 
     /**
-     * Deletes an existing Items model.
+     * Deletes an existing Product model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -144,15 +110,15 @@ class TeamsController extends Controller
     }
 
     /**
-     * Finds the Items model based on its primary key value.
+     * Finds the Product model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Items the loaded model
+     * @return Product the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Items::findOne($id)) !== null) {
+        if (($model = Product::findOne($id)) !== null) {
             return $model;
         }
 

@@ -2,8 +2,9 @@ html,
 body {
     height: 100%;
     font-size: 16px !important;
+    letter-spacing: 1px;
     line-height: 18px !important;
-    font-family: din_light !important;
+    /*font-family: bpgAlgeti !important;*/
 }
 /* Typography resets */
 div,
@@ -27,12 +28,22 @@ th,
 td {
     margin: 0;
     padding: 0;
-    direction: ltr; }
+    direction: ltr;
+    font-size: 16px;
+}
 
 /* Default Link Styles */
+.thumbnail
+{
+    height: 350px !important;
+    overflow: hidden;
+    clear: both;
+    margin-bottom: 30px;
+}
 a {
     color: #008cba;
     text-decoration: none;
+    text-transform: none;
     line-height: inherit; }
 a:hover, a:focus {
     color: #0079a1; }
@@ -43,6 +54,7 @@ a img {
 p {
     font-family: inherit;
     font-weight: normal;
+    letter-spacing: 1px;
     line-height: 16px;
     margin-bottom: 1.25rem;
     text-rendering: optimizeLegibility; }
@@ -53,25 +65,26 @@ p aside {
 
 /* Default header styles */
 h1, h2, h3, h4, h5, h6 {
-    font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
-    font-weight: 300;
+    /*font-family: "Open Sans", "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;*/
+    font-weight: 600 !important;
     font-style: normal;
-    color: #222222;
+    color: #1D386B !important;
     text-rendering: optimizeLegibility;
     margin-top: 0.2rem;
     margin-bottom: 0.5rem;
     line-height: 1.4; }
 h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
     font-size: 60%;
-    color: #6f6f6f;
     line-height: 0; }
 li {
-    /*list-style: none;*/
-    font-weight: normal !important;
-    padding-bottom: 5px !important;
-    text-align: justify !important;
-    font-family: din_light !important;
-    font-size:1.05em;
+    font-family: inherit;
+    font-weight: normal;
+    letter-spacing: 1px;
+    line-height: 22px;
+    font-size: inherit;
+    margin-bottom: 4px;
+    text-rendering: optimizeLegibility;
+    color: #FFFFFF;
 }
 .wrap {
     min-height: 100%;
@@ -172,7 +185,10 @@ a.desc:after {
     padding: 15px;
     border: none;
 }
-
+.caption
+{
+    max-height: 150px;
+}
 @media(max-width:767px) {
     .nav li > form > button.logout {
         display:block;
@@ -236,3 +252,5 @@ a.desc:after {
     padding: 0;
     background-size: cover;
 }
+
+

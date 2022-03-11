@@ -40,11 +40,7 @@ Yii::$app->view->registerJs('tinymce.init({
     <?= $form->field($model, 'description_ge')->textarea(['rows' => 6]) ?>
     <?= $form->field($model, 'img')->fileInput() ?>
     <?= Html::img(Yii::getAlias('@web').'/uploads/news/'.$img, ['alt'=>'ell', 'class'=>'thing', 'height'=>'150px', 'width'=>'150px'])?>
-<!--    --><?//= $form->field($model, 'image')->textInput(['maxlength' => true]) ?>
-    <?/*= $form->field($model, 'birthdate')->textInput() */?><!--
-    --><?/*= $form->field($model, 'item_key')->textInput(['maxlength' => true]) */?>
     <?= $form->field($model, 'active')->dropDownList([ '0', '1', ], ['prompt' => '']) ?>
-    <?/*= $form->field($model, 'position')->textInput(['maxlength' => true]) */?>
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>

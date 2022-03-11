@@ -297,8 +297,8 @@ if ($lang_id == 'en-US'){
                 <div class="stylyza">
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <div class="logo">
-                            <a href="http://ell.webertela.online/web/">
-                                <img class="desktopiza" src="../images/logo.png" style="width: 120px;">
+                            <a href="http://ell.ge">
+                                <img class="desktopiza" src="images/logo.png" style="width: 120px;">
                             </a>
                         </div>
                         <ul class="nav navbar-nav navbar-left level-1" style="position: relative; top:34px;">

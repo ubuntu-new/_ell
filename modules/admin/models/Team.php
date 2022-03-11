@@ -65,7 +65,7 @@ class Team extends \yii\db\ActiveRecord
 
     public function upload(){
         if ($this->validate()) {
-            $this->img->saveAs('uploads/news/' . $this->img->baseName . '.' . $this->img->extension);
+            $this->img->saveAs('uploads/team/' . $this->img->baseName . '.' . $this->img->extension);
             //$this->img = null;
             return true;
         } else {
