@@ -11,7 +11,6 @@ $this->params['breadcrumbs'][] = ['label' => 'Studyabroads', 'url' => ['index']]
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
-
 <div class="container">
 <div class="studyabroad-view">
 

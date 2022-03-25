@@ -44,7 +44,7 @@ $lang_id = Yii::$app->language = $session->has('lang')?$session->get('lang'): 'k
 
         <?= $form->field($model, 'name')->textInput(['maxlength' => true])->label('სახელი და გვარი')  ?>
 
-        <?= $form->field($model, 'bday')->textInput()->label('დაბადების წელი') ?>
+        <?= $form->field($model, 'bday')->textInput()->label('დაბადების თარიღი') ?>
 
         <?= $form->field($model, 'phone')->textInput(['maxlength' => true])->label('ტელეფონი') ?>
 
@@ -72,7 +72,7 @@ $lang_id = Yii::$app->language = $session->has('lang')?$session->get('lang'): 'k
 
         <?= $form->field($model, 'lsnguageprograms')->checkbox(['label'=> 'უცხო ენის პროგრამები', '0', '1']) ?>
 
-        <?= $form->field($model, 'professionalcourses')->checkbox(['label'=> 'პროფესიუი კურსები', '0', '1']) ?>
+        <?= $form->field($model, 'professionalcourses')->checkbox(['label'=> 'პროფესიული კურსები', '0', '1']) ?>
 
         <?= $form->field($model, 'summerschgoolforjuniors')->checkbox(['label'=> 'საზაფხულო სკოლები ბავშვებისთვის', '0', '1']) ?>
 
@@ -90,33 +90,33 @@ $lang_id = Yii::$app->language = $session->has('lang')?$session->get('lang'): 'k
         <h1>Study Abroad</h1>
         <h2>Registration Form</h2>
 
-        <?= $form->field($model, 'name')->textInput(['maxlength' => true])  ?>
+        <?= $form->field($model, 'name')->textInput(['maxlength' => true])->label('Full Name') ?>
 
-        <?= $form->field($model, 'bday')->textInput() ?>
+        <?= $form->field($model, 'bday')->textInput()->label('Date of Birth')?>
 
-        <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'phone')->textInput(['maxlength' => true])?>
 
-        <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'email')->textInput(['maxlength' => true])?>
 
         <h2>Where do you want to study: </h2>
 
-        <?= $form->field($model, 'uk')->checkbox(['label'=> 'UK', '0', '1', ]) ?>
+        <?= $form->field($model, 'uk')->checkbox(['label'=> 'UK', '0', '1', ])?>
 
-        <?= $form->field($model, 'usa')->checkbox(['label'=> 'USA', '0', '1', ]) ?>
+        <?= $form->field($model, 'usa')->checkbox(['label'=> 'USA', '0', '1', ])?>
 
-        <?= $form->field($model, 'canada')->checkbox(['label'=> 'Canada', '0', '1', ]) ?>
+        <?= $form->field($model, 'canada')->checkbox(['label'=> 'Canada', '0', '1', ])?>
 
-        <?= $form->field($model, 'europe')->checkbox(['label'=> 'Europe', '0', '1', ]) ?>
+        <?= $form->field($model, 'europe')->checkbox(['label'=> 'Europe', '0', '1', ])?>
 
         <?= $form->field($model, 'asia')->checkbox(['label'=> 'Asia', '0', '1', ]) ?>
 
         <h2>Programme you want to study: </h2>
 
-        <?= $form->field($model, 'schoolpropgrams')->checkbox(['label'=> 'School Programs', '0', '1']) ?>
+        <?= $form->field($model, 'schoolpropgrams')->checkbox(['label'=> 'School Programme', '0', '1']) ?>
 
-        <?= $form->field($model, 'bachelormasters')->checkbox(['label'=> 'Bachelor Masters', '0', '1']) ?>
+        <?= $form->field($model, 'bachelormasters')->checkbox(['label'=> 'Bachelor/Masters', '0', '1']) ?>
 
-        <?= $form->field($model, 'phd')->checkbox(['label'=> 'PHD', '0', '1', ]) ?>
+        <?= $form->field($model, 'phd')->checkbox(['label'=> 'PhD', '0', '1', ]) ?>
 
         <?= $form->field($model, 'lsnguageprograms')->checkbox(['label'=> 'Language Programmes', '0', '1']) ?>
 

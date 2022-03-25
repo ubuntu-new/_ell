@@ -29,9 +29,6 @@ Yii::$app->view->registerJs('tinymce.init({
 <div class="items-form">
 
     <?php $form = ActiveForm::begin(); ?>
-
-
-
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
@@ -39,7 +36,8 @@ Yii::$app->view->registerJs('tinymce.init({
     <?= $form->field($model, 'title_ge')->textInput(['maxlength' => true]) ?>
     <?= $form->field($model, 'description_ge')->textarea(['rows' => 6]) ?>
     <?= $form->field($model, 'img')->fileInput() ?>
-    <?= Html::img(Yii::getAlias('@web').'/uploads/news/'.$img, ['alt'=>'ell', 'class'=>'thing', 'height'=>'150px', 'width'=>'150px'])?>
+    <?= Html::img(Yii::getAlias('@web').'/uploads/team/'.$img, ['alt'=>'ell', 'class'=>'thing', 'height'=>'150px', 'width'=>'150px'])?>
+
     <?= $form->field($model, 'active')->dropDownList([ '0', '1', ], ['prompt' => '']) ?>
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

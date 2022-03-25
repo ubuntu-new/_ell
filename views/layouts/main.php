@@ -14,16 +14,26 @@ use kartik\social\FacebookPlugin;
 
 AppAsset::register($this);
 
+
+$share_img = "http://ell.ge/images/ell-study-abroad-fb-share.jpg";
+$url = "http://ell.ge/";
 ?>
 <?php $this->beginPage() ?>
 <!DOCTYPE html>
 <html lang="<?= Yii::$app->language ?>">
+<!--  SOCIAL -->
+<meta property="og:url"                content="<?=$url?>" />
+<meta property="og:type"               content="ELL Educational Agency" />
+<meta property="og:title"              content="ELL Educational Agency" />
+<meta property="og:description"        content="ELL Educational Agency was founded in 2002 in Tbilisi, Georgia. Prior to this process a two year preparation was carried out, which involved signing agreements and receiving certificates of representation with Universities, Colleges and Language Schools in UK, USA and Europe." />
+<meta property="og:image"              content="<?=$share_img?>" />
 <?php
-$lang_id = 'ka-GE';
-//$lang = Yii::$app->language;
+$session = \Yii::$app->session;
+
+$lang_id = Yii::$app->language = $session->has('lang')? $session->get('lang'): 'ka-GE';
+
 if (isset($_REQUEST['lang_id'])){
     $lang_id = $_REQUEST['lang_id'];
-
 }
 
     $contact = \app\models\Contactinfo::find()->all();
@@ -267,13 +277,10 @@ if (isset($_REQUEST['lang_id'])){
 $lang_id = Yii::$app->language;
 if ($lang_id == 'ka-GE'){
     $font_family = 'bpg-web-001-caps !important';
-
 }
-
 if ($lang_id == 'en-US'){
     $font_family = 'nexa !important';
 }
-
 ?>
 
 <header class="menu-wrap">
@@ -290,25 +297,25 @@ if ($lang_id == 'en-US'){
                         <span class="icon-bar"></span>
                     </button>
                         <a href="index.php" class="mobiluriza" >
-                            <img class="mobiluriza" src="images/logo.png" style="width: 120px;display: none">
+                            <img class="mobiluriza" src="../images/logo.png" style="width: 120px;display: none">
                         </a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="stylyza">
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <div class="logo">
-                            <a href="http://ell.ge">
-                                <img class="desktopiza" src="images/logo.png" style="width: 120px;">
+                            <a href="https://ell.ge">
+                                <img class="desktopiza" src="<?= Yii::getAlias('@web')?>/images/logo.png" style="width: 120px;">
                             </a>
                         </div>
                         <ul class="nav navbar-nav navbar-left level-1" style="position: relative; top:34px;">
-                            <li><a href="#about" style="font-family: <?=$font_family?>"><?= Yii::t('menu', 'ABOUT US')?></a></li>
-                            <li><a href="#students" style="font-family: <?=$font_family?>"><?= Yii::t('menu', 'STUDENTS')?></a></li>
-                            <li><a href="#partners" style="font-family: <?=$font_family?>"><?= Yii::t('menu', 'PARTNERS')?></a></li>
-                            <li><a href="#team" style="font-family: <?=$font_family?>"><?= Yii::t('menu', 'OUR TEAM')?></a></li>
-                            <li><a href="#services" style="font-family: <?=$font_family?>"><?= Yii::t('menu', 'OUR SERVICES')?></a></li>
-                            <li><a href="#news" style="font-family: <?=$font_family?>"><?= Yii::t('menu', 'NEWS')?></a></li>
-                            <li><a href="#bg-contact"style="font-family: <?=$font_family?>"><?= Yii::t('menu', 'Contact')?></a></li>
+                            <li><a href="https://ell.ge/#about" style="font-family: <?=$font_family?>"><?= Yii::t('menu', 'ABOUT US')?></a></li>
+                            <li><a href="https://ell.ge/#students" style="font-family: <?=$font_family?>"><?= Yii::t('menu', 'STUDENTS')?></a></li>
+                            <li><a href="https://ell.ge/#partners" style="font-family: <?=$font_family?>"><?= Yii::t('menu', 'PARTNERS')?></a></li>
+                            <li><a href="https://ell.ge/#team" style="font-family: <?=$font_family?>"><?= Yii::t('menu', 'OUR TEAM')?></a></li>
+                            <li><a href="https://ell.ge/#services" style="font-family: <?=$font_family?>"><?= Yii::t('menu', 'OUR SERVICES')?></a></li>
+                            <li><a href="https://ell.ge/#news" style="font-family: <?=$font_family?>"><?= Yii::t('menu', 'NEWS')?></a></li>
+                            <li><a href="https://ell.ge/#bg-contact"style="font-family: <?=$font_family?>"><?= Yii::t('menu', 'Contact')?></a></li>
                             <li><a class="flag-icon-ge flag-icon-squared flagebi" href="<?= \yii\helpers\Url::to(['site/language', 'lang' => 'ka-GE', 'lang_id' => 'ka-GE']) ?>"></a></li>
                             <li><a class="flag-icon-gb flag-icon-squared flagebi" href="<?= \yii\helpers\Url::to(['site/language', 'lang' => 'en-US', 'lang_id' => 'en-US']) ?>"></a></li>
                         </ul>

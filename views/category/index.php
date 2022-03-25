@@ -17,7 +17,8 @@ $lang_id = Yii::$app->language;
  */
 ?>
 <?php
-$students = \app\models\db\Items::findAll(['item_key' => 'STUDENTS', 'active' => '1']);
+//$students = \app\models\db\Items::findAll(['item_key' => 'STUDENTS', 'active' => '1']);
+$students = \app\models\Studentsw::findAll(['active' => '1']);
 $studentsTxt = \app\models\db\Students::findAll(['visible' => '1']);
 
 if ($lang_id == 'ka-GE') {
@@ -38,6 +39,29 @@ if ($lang_id == 'en-US') {
 }
 
 ?>
+
+<?php
+$settings = \app\models\Settings::findAll(['visible' => '1']);
+
+if ($lang_id == 'ka-GE') {
+    foreach ($settings as $row) {
+        $title = $row['title_ge'];
+        $value = $row['value'];
+        $font_family = 'bpg-web-001-caps !important';
+    }
+
+}
+
+if ($lang_id == 'en-US') {
+    foreach ($settings as $row) {
+        $title = $row['title'];
+        $value = $row['value'];
+        $font_family = 'nexa !important';
+    }
+}
+
+?>
+
 
 
 <div style="position: relative;">
@@ -85,28 +109,15 @@ if ($lang_id == 'en-US') {
 </div>
 <div class="container-fluid">
     <div class="row">
-        <div class="large-3 three columns numerebi">
-            <h2 class="uppercase text-center numerebiTitle counters" style="font-family: <?= $font_family ?>;">
-                Educational Institutions
-                <p id="lines" data-number="300" class="numerebiText">0</p>
-            </h2>
-        </div>
-        <div class="large-3 three columns numerebi">
-            <h2 class="uppercase text-center numerebiTitle counters" style="font-family: <?= $font_family ?>;">Countries
-                <p id="countries" data-number="50" class="numerebiText">0</p>
-            </h2>
-        </div>
-        <div class="large-3 three four columns numerebi">
-            <h2 class="uppercase text-center numerebiTitle  counters" style="font-family: <?= $font_family ?>;">Students
-                <p id="students" data-number="4000" class="numerebiText">0</p>
-            </h2>
-        </div>
-        <div class="large-3 three four columns numerebi">
-            <h2 class="uppercase text-center numerebiTitle  counters" style="font-family: <?= $font_family ?>;">YEARS IN
-                BUSINESS
-                <p id="years" data-number="18" class="numerebiText">0</p>
-            </h2>
-        </div>
+        <?php foreach ($settings as $item): ?>
+            <div class="large-3 three columns numerebi">
+                <h2 class="uppercase text-center numerebiTitle counters" style="font-family: <?= $font_family ?>;">
+                    <?= $lang_id == 'ka-GE' ? $item->title_ge : $item->title ?>
+                    <p id="<?=$item->idd?>" data-number="<?=$item->value?>" class="numerebiText">0</p>
+                </h2>
+            </div>
+        <?php endforeach; ?>
+
     </div>
 </div>
 
@@ -123,20 +134,20 @@ if ($lang_id == 'en-US') {
             //'description' => ($studentsTxt[$stuTxtdesc]) ? $studentsTxt[0]['description'] : "",
             'radius' => 50,
             'rows' => 2,
-            'slidesToShow' => 3,
+            'slidesToShow' => 4,
             'width' => '90%'
         ]) ?>
     </div>
-    <div id="studentebi-mob" style="display: none; padding: 30px 0">
+    <div id="studentebi-mob" style="display: none; ">
         <div class="row">
             <div class="col-sm-12 stutxt" style=" background-color: #1D386B; padding: 30px;  margin-bottom: 30px ">
-                <h1 style="font-family: <?= $font_family ?>; "><?= $stuTxt ?></h1>
+                <h1 style="font-family: <?= $font_family ?>; color: #ffffff !important;"><?= $stuTxt ?></h1>
                 <p><?= $stuTxtdesc ?></p>
             </div>
             <?php foreach ($students as $item): ?>
-                <div class="col-sm-6" style="margin-bottom: 50px">
+                <div class="col-sm-12" style="margin-bottom: 50px">
                     <div class="image-inner text-center">
-                        <?= Html::img($item->image, ['style' => 'border-radius:50%; width:40%;margin: 0 auto;']) ?>
+                        <?= Html::img('uploads/students/'.$item->img, ['style' => ' margin: 0 auto;']) ?>
                     </div>
                     <h1 style="font-family: <?= $font_family ?>;"><?= $lang_id == 'ka-GE' ? $item->name_ge : $item->name ?></h1>
                     <span><?= $lang_id == 'ka-GE' ? $item->title_ge : $item->title ?></span>
@@ -150,21 +161,17 @@ if ($lang_id == 'en-US') {
 
 
 <!-- parallax -->
-<div style="position: relative;height: 100px;">&nbsp;</div>
+<div class="desktopiza" style="position: relative;height: 100px;">&nbsp;</div>
 <div class="noparallax">
     <img id="image" src="uploads/main/city/1.jpg" style="width:100%; height: 220px;">
 </div>
-<div style="position: relative;height: 100px;">&nbsp;</div>
+<div class="desktopiza"  style="position: relative;height: 100px;">&nbsp;</div>
 <!-- #parallax Ends -->
 
 <!-- PARTNERS -->
 <?php
 //$partners = \app\models\db\Items::findAll(['item_key' => 'PARTNERS', 'active' => '1']);
-$partners = \app\models\db\Items::find()
-    ->where(['item_key' => 'PARTNERS','active' => '1'])
-    ->orderBy(['id' => SORT_ASC])
-    ->all();
-
+$partners = \app\models\Partnersw::findAll(['active' => '1']);
 $partnersTxt = \app\models\db\Partners::findAll(['visible' => '1']);
 $lang_id = Yii::$app->language;
 if ($lang_id == 'ka-GE') {
@@ -194,14 +201,14 @@ if ($lang_id == 'en-US') {
                     'description' => $partDesc,
                     'font_family' => $font_family,
                     'background' => '#E22140',
-                    'rows' => 5,
+                    'rows' => 4,
                     'slidesToShow' => 4,
-                    'width' => '100%'
+                    'width' => '80%'
                 ]) ?>
             </div>
         </div>
     </div>
-    <div id="studentebi-mob" style="display: none; padding: 30px 0">
+    <div id="studentebi-mob" style="display: none; ">
         <div class="row">
             <div class="col-sm-12 stutxt" style=" background-color: #E22140; padding: 30px;  margin-bottom: 30px ">
                 <h1 style="font-family: <?= $font_family ?>; color: #ffffff !important;"><?= $partTxt ?></h1>
@@ -210,13 +217,10 @@ if ($lang_id == 'en-US') {
         </div>
         <div class="row">
             <?php foreach ($partners as $item): ?>
-                <div class="col-sm-6" style="margin-bottom: 50px">
+                <div class="col-md-6" style="margin-bottom: 50px">
                     <div class="image-inner text-center">
-                        <?= Html::img($item->image, ['style' => 'border-radius:0; width:40%;margin: 0 auto;']) ?>
+                        <?= Html::img('uploads/partners/'.$item->img, ['style' => ' width:50%;margin: 0 auto;']) ?>
                     </div>
-                    <!--     <h1 style="font-family: <?/*= $font_family */?>;"><?/*= $lang_id == 'ka-GE' ? $item->name_ge : $item->name */?></h1>
-                    <span><?/*= $lang_id == 'ka-GE' ? $item->title_ge : $item->title */?></span>
-                    <p style="margin-top: 20px"><?/*= $lang_id == 'ka-GE' ? $item->description_ge : $item->description */?></p>-->
                 </div>
             <?php endforeach; ?>
         </div>
@@ -224,9 +228,9 @@ if ($lang_id == 'en-US') {
 </div>
 <!-- .PARTNERS -->
 
-<div style="position: relative;height: 100px;">&nbsp;</div>
+<div class="desktopiza" style="position: relative;height: 100px;">&nbsp;</div>
 
-<div class="parallax_1"></div>
+<div class="desktopiza" class="parallax_1"></div>
 
 
 <!-- ABOUT -->
@@ -268,11 +272,12 @@ if ($lang_id == 'en-US') {
             </div>
         </div>
     </div>
-    <div id="studentebi-mob" style="display: none; padding: 30px 0">
+    <div id="studentebi-mob" style="display: none;">
         <div class="row">
             <div class="col-sm-12 stutxt" style=" background-color: #1D386B; padding: 30px;  margin-bottom: 30px ">
                 <h1 style="font-family: <?= $font_family ?>; color: #ffffff !important;"><?= $abotxt ?></h1>
                 <p><?= $aboDesc ?></p>
+                <p><?= Html::img('uploads/main/loggg.png', ['alt' => 'Logo' ,'style' => 'width:340px;']) ?></p>
             </div>
         </div>
         <div class="row">
@@ -281,9 +286,6 @@ if ($lang_id == 'en-US') {
                     <div class="image-inner text-center">
                         <?= Html::img($item->image) ?>
                     </div>
-                    <!--                <h1 style="font-family: <?/*= $font_family */?>;"><?/*= $lang_id == 'ka-GE' ? $item->name_ge : $item->name */?></h1>
-                <span><?/*= $lang_id == 'ka-GE' ? $item->title_ge : $item->title */?></span>
-                <p style="margin-top: 20px"><?/*= $lang_id == 'ka-GE' ? $item->description_ge : $item->description */?></p>-->
                 </div>
             <?php endforeach; ?>
         </div>
@@ -291,7 +293,7 @@ if ($lang_id == 'en-US') {
 </div>
 <!-- .ABOUT -->
 
-<div style="position: relative;height: 100px;">&nbsp;</div>
+<div class="desktopiza" style="position: relative;height: 100px;">&nbsp;</div>
 
 
 <!-- TEAM -->
@@ -303,6 +305,7 @@ if ($lang_id == 'ka-GE') {
         $teamtxt = $row['title_ge'];
         $teamDesc = $row['description_ge'];
         $font_family = 'bpg-web-001-caps !important';
+        $font_size = '14px !important';
     }
 
 }
@@ -311,6 +314,7 @@ if ($lang_id == 'en-US') {
         $teamtxt = $row['title'];
         $teamDesc = $row['description'];
         $font_family = 'nexa !important';
+        $font_size = '16px !important';
     }
 }
 ?>
@@ -327,28 +331,25 @@ if ($lang_id == 'en-US') {
                     'rows' => 2,
                     'slidesToShow' => 4,
                     'background' => '#E22140',
-                    'width' => '100%'
+                    'width' => '80%'
                 ]) ?>
             </div>
         </div>
     </div>
-    <div id="studentebi-mob" style="display: none; padding: 30px 0">
+    <div id="studentebi-mob" style="display: none;">
         <div class="row">
-            <div class="col-sm-12 stutxt" style=" background-color: #E22140; padding: 30px;  margin-bottom: 30px ">
+            <div class="col-sm-12 stutxt" style=" background-color: #E22140; padding: 30px 10px;  margin-bottom: 30px ">
                 <h1 style="font-family: <?= $font_family ?>; color: #ffffff !important;"><?= $teamtxt ?></h1>
                 <p><?= $teamDesc ?></p>
             </div>
         </div>
-        <div class="row" style=" background-color: #1D386B; padding: 30px;  margin-bottom: 30px ">
+        <div class="row" style="background-color: #1D386B; padding: 30px 10px;  margin-bottom: 30px ">
             <?php foreach ($team as $item): ?>
                 <div class="col-sm-12" style="margin-bottom: 50px">
                     <div class="image-inner text-center">
-                        <?php
-                        $image  = 'uploads/team/'.$item->img;
-                        ?>
-                        <?= Html::img($image, ['style' => 'border-radius:50%; width:40%;margin: 0 auto;' , 'alt'=>$item->img]) ?>
+                        <?= Html::img('uploads/team/'.$item->img) ?>
                     </div>
-                    <h1 style="font-family: <?= $font_family ?>; color: #FFFFFF;"><?= $lang_id == 'ka-GE' ? $item->name_ge : $item->name ?></h1>
+                    <h1 style="font-family: <?= $font_family ?>; color: #FFFFFF !important;"><?= $lang_id == 'ka-GE' ? $item->name_ge : $item->name ?></h1>
                     <span style="text-align: "><?= $lang_id == 'ka-GE' ? $item->title_ge : $item->title ?></span>
 
                 </div>
@@ -368,8 +369,8 @@ if ($lang_id == 'en-US') {
     <div id="studentebi" style="display: block">
         <div class="container-fluid" style="background-color: white">
             <div class="row">
-                <div class="ds-container blue" style="height: 1320px !important;">
-                    <div class="large-6 six columns ds-items-container blue" style=" position: relative">
+                <div class="ds-container blue" style="height: 850px !important;">
+                    <div class="large-7 seven columns ds-items-container blue" style="padding: 0 60px; position: relative">
                         <?php
                         if ($lang_id == 'ka-GE') {
                             foreach ($provideTxt as $row) {
@@ -377,6 +378,7 @@ if ($lang_id == 'en-US') {
                                 $provideDesc = $row['description_ge'];
                                 $font_family = 'bpg-web-001-caps !important';
                             }
+
                         }
                         if ($lang_id == 'en-US') {
                             foreach ($provideTxt as $row) {
@@ -386,13 +388,10 @@ if ($lang_id == 'en-US') {
                             }
                         }
                         ?>
-                        <div style="width: 100%; position: absolute; top: 50%; left:40%; padding: 0 0 0 120px !important;transform: translate(-50%, -50%);">
-                            <h1 class="ds-main-name uppercase text-left"
-                                style="font-family: <?= $font_family ?>"><?= $provideTitle; ?></h1>
-                            <!--<a href="<? /*=\yii\helpers\Url::to(["site/language", "lang"=>"ka_ge"])*/ ?>">language</a>-->
-                            <div class="txtiza">
+                        <div style="position: absolute; top: 50%; left: 37%; transform: translate(-50%, -50%);">
+                            <h2 class="ds-main-name uppercase text-left"
+                                style="font-family: <?= $font_family ?>"><?= $provideTitle; ?></h2>
                             <?= $provideDesc; ?>
-                            </div>
                             <div class="large-12 twelve columns"
                                  style="background-color: #E22140; padding: 12px 14px; width: 250px; text-align: center">
                                 <a class="provideLink" href="<?= \yii\helpers\Url::to(['category/form']) ?>"
@@ -405,7 +404,7 @@ if ($lang_id == 'en-US') {
                         <div style="display: none; border-radius: 0px !important; padding: 0px !important;" id="animatedModalForm"
                              class="animated-modal modaluriza">
                             <div class="large-12 twelve columns">
-                                <div style=" position: relative; top: 150px;width: 100%; padding: 0 60px">
+                                <div style="position: relative; top: 150px;width: 100%; padding: 0 60px">
                                     <div class="studyabroad-form">
 
                                         <?php $form = ActiveForm::begin(); ?>
@@ -430,14 +429,13 @@ if ($lang_id == 'en-US') {
 
 
                                         <?php ActiveForm::end(); ?>
-
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <!-- form modal>-->
                     </div>
-                    <div class="large-6 six columns  ds-main-container  hidden-sm" style="padding: 0 60px; position: relative">
+                    <div class="large-5 five columns  ds-main-container  hidden-sm" style="padding: 0 60px; position: relative">
                         <div style=" position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);width: 100%;">
                             <div class="row" style="padding-right: 60px;">
                                 <?php foreach ($provide as $row): ?>
@@ -455,8 +453,7 @@ if ($lang_id == 'en-US') {
                                     <a data-fancybox data-animation-duration="700" style="font-family:<?= $font_family ?>; color: #ffffff !important;"
                                        data-src="#animatedModal<?= $row->id ?>" href="javascript:;" class="provideLink">
                                         <div class="large-6 six columns provideBox">
-                                            <p class="uppercase text-center white bebas"
-                                               style="font-family: <?= $font_family?>">
+                                            <p class="uppercase text-center white bebas">
                                                 <?= $proName ?>
                                             </p>
                                         </div>
@@ -464,8 +461,8 @@ if ($lang_id == 'en-US') {
                                     <div style="display: none; border-radius: 0px !important; padding: 0px !important;"
                                          id="animatedModal<?= $row->id ?>" class="animated-modal modaluriza">
                                         <div class="large-6 six columns">
-                                            <div style=" position: relative; top: 80px;width: 100%; padding: 0 60px">
-                                                <h1 style="color: #E71F40 !important;font-family: <?= $font_family ?>;"><?= $proName ?></h1>
+                                            <div style=" position: relative; top: 30px;width: 100%; padding: 0 60px">
+                                                <h2 style="color: #E71F40 !important;font-family: <?= $font_family ?>;"><?= $proName ?></h2>
                                                 <p><?= $proContent ?></p>
                                             </div>
                                         </div>
@@ -483,10 +480,10 @@ if ($lang_id == 'en-US') {
             </div>
         </div>
     </div>
-    <div id="studentebi-mob" style="display: none; padding: 30px 0">
+    <div id="studentebi-mob" style="display: none; ">
         <div class="row">
             <div class="col-sm-12 stutxt" style=" background-color: #1D386B; padding: 30px;  margin-bottom: 30px ">
-                <h1 style="font-family: <?= $font_family ?>; color: #1D386B !important;"><?= $provideTitle ?></h1>
+                <h1 style="font-family: <?= $font_family ?>; "><?= $provideTitle ?></h1>
                 <p><?= $provideDesc ?></p>
             </div>
         </div>
@@ -507,9 +504,9 @@ if ($lang_id == 'en-US') {
                         <div style=" position: relative; top: 30px ;width: 100%; padding: 0 20px">
 
                             <img src="uploads\provide\<?= $row->img ?>" class="img-fluid" alt="Responsive image">
-                            <h1 style="color: #1D386B ;font-family: <?= $font_family ?>;"><?= $proName ?></h1>
-                            <div class="blue"> <?= $proContent ?> </div>
-                            </div>
+                            <h2 style="font-family: <?= $font_family ?>;"><?= $proName ?></h2>
+                            <?= $proContent ?>
+                        </div>
                     </div>
                 </div>
             <?php endforeach; ?>
@@ -528,8 +525,8 @@ if ($lang_id == 'en-US') {
     <div id="studentebi" style="display: block">
         <div class="container-fluid" style="background-color: white">
             <div class="row">
-                <div class="ds-container blue" style="" id="services">
-                     <div class="row" style="padding: 100px;">
+                <div class="ds-container blue"  id="services">
+                     <div class="row" style="padding: 30px 60px;">
                             <div class="col-sm-12">
                                 <?php
                                 $usfultxt = \app\models\db\Usfull::findAll(['visible' => '1']);
@@ -540,6 +537,7 @@ if ($lang_id == 'en-US') {
                                         $usfultxtTitle = $row['title_ge'];
                                         $usfultxtDesc = $row['description_ge'];
                                     }
+
                                 }
                                 if ($lang_id == 'en-US') {
                                     foreach ($usfultxt as $row) {
@@ -548,7 +546,8 @@ if ($lang_id == 'en-US') {
                                     }
                                 }
                                 ?>
-                                <h1 class="ds-main-name uppercase text-left" style="font-family: <?= $font_family ?>"><?= $usfultxtTitle; ?></h1>
+                                <h2 class="ds-main-name uppercase text-left"
+                                    style="font-family: <?= $font_family ?>"><?= $usfultxtTitle; ?></h2>
                             </div>
                             <div class="col-sm-12">
                             <div class="row">
@@ -567,19 +566,22 @@ if ($lang_id == 'en-US') {
                                     <a data-fancybox data-animation-duration="700" style="font-family: Nexa"
                                        data-src="#animatedModals<?= $row->id ?>" href="javascript:;" class="provideLink ">
                                         <div class="col-md-2 col-sm-12   usfullbox  align-middle"
-                                             style="background-color: #1D386B; border: 18px solid #1D386B; ">
+                                             style="background-color: #1D386B; border: 2px solid #1D386B; ">
                                             <?php $path = '@web/images/flag/' . $row['img'] ?>
                                             <div class="row">
-                                                <div class="col-md-6" style="padding-left: 10px !important; padding-right: 10px !important;"><?= Html::img($path, ['alt' => 'pic not found', 'class' => 'shadow p-3 mb-5 bg-white ', 'style' => 'width:64px; float:left; padding-left:10px;']); ?></div>
-                                                <div class="col-md-6" style="padding-left: 0px !important; padding-right: 0px !important;position: relative; top: 10px"> <?= $usfultxtTitle ?></div>
+                                                <div class="col-md-6"><?= Html::img($path, ['alt' => 'pic not found', 'class' => 'shadow p-3 mb-5 bg-white ', 'style' => 'width:64px; float:left; padding:0 0 10px 10px;']); ?></div>
+                                                <div class="col-md-6"
+                                                     style="position: relative; top: 10px"> <?= $usfultxtTitle ?></div>
                                             </div>
+
+
                                         </div>
                                     </a>
                                     <div style="display: none; border-radius: 0px !important; padding: 0px !important; overflow: auto"
                                          id="animatedModals<?= $row->id ?>" class="animated-modal modaluriza">
                                         <div class=" col-sm-12" style="border-right: 100px solid #E71F40">
                                             <div style="width: 80%;  padding: 0 60px; float: left;">
-                                                <h1 style="color: #E71F40 !important; font-family:   bpg-web-001-caps !important;"><?= $usfultxtTitle ?></h1>
+                                                <h2 style="color: #E71F40 !important;font-family: <?= $font_family ?> "><?= $usfultxtTitle ?></h2>
                                                 <h5 style="color: #E71F40 !important;"><?= $usfultxtDesc ?></h5>
                                             </div>
                                         </div>
@@ -594,7 +596,7 @@ if ($lang_id == 'en-US') {
             </div>
         </div>
     </div>
-    <div id="studentebi-mob" style="display: none; padding: 30px 0">
+    <div id="studentebi-mob" style="display: none; ">
         <?php
         $usfultxt = \app\models\db\Usfull::findAll(['visible' => '1']);
         $usfulLinks = \app\models\Usfullinks::findAll(['visible' => '1']);
@@ -613,8 +615,9 @@ if ($lang_id == 'en-US') {
         }
         ?>
         <div class="row">
-            <div class="col-sm-12 stutxt" style=" background-color: #1D386B; padding: 30px;  margin-bottom: 30px ">
-                <h1 style="font-family: <?= $font_family ?>; color: #FFFFFF !important;"><?= $usfultxtTitle ?></h1>
+
+            <div class="col-sm-12 stutxt" style=" background-color: #1D386B; padding: 30px 10px;">
+                <h1 style="font-family: <?= $font_family ?>; color: #ffffff !important;"><?= $usfultxtTitle ?></h1>
             </div>
         </div>
         <div class="row">
@@ -635,11 +638,15 @@ if ($lang_id == 'en-US') {
                         <a data-fancybox data-animation-duration="700" style="font-family:<?= $font_family ?>" data-src="#usenimatedModal<?= $usfull->id ?>" href="javascript:;" class="provideLink">
                                 <?php $path = '@web/images/flag/' . $usfull['img'] ?>
                                 <div class="row">
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-12">
                                         <?= Html::img($path, ['alt' => 'pic not found',  'style' => 'width:64px; float:left; padding-left:10px;']); ?>
-                                        <h1><?= $usfultxtTitle ?></h1>
+                                        <h2 class="pl25" style="color: #ffffff !important; font-family: <?= $font_family ?> ;    position: relative;
+                                                left: 20px;
+                                                top: 20px;"><?= $usfultxtTitle ?></h2>
                                     </div>
                                 </div>
+
+
                         </a>
                     </div>
                 </div>
@@ -647,7 +654,7 @@ if ($lang_id == 'en-US') {
                     <div class="large-12 twelve columns" style=" height: 100%; padding-left: 0px !important; padding-right: 0px !important;">
                         <div style="position: relative; top: 30px ;width: 100%; padding: 0 20px">
                             <h1 style="color: #1D386B !important;font-family: <?= $font_family ?>;"><?= $usfultxtTitle ?></h1>
-                            <?= htmlspecialchars($usfultxtDesc) ?>
+                            <?= $usfultxtDesc ?>
                         </div>
                     </div>
                 </div>
@@ -658,11 +665,9 @@ if ($lang_id == 'en-US') {
 <!-- .USFULI -->
 
 <?php
-$news = \app\models\News::findAll(['visible' => '1']);
+$news = \app\models\News::find()->where(['visible' => '1'])->limit('6')->orderBy(['id' => SORT_DESC])->all();
 $newstxt = \app\models\Newstxt::findAll(['visible' => '1']);
-foreach ($newstxt
-
-as $row)
+foreach ($newstxt as $row)
 {
 if ($lang_id == 'ka-GE') {
 
@@ -682,10 +687,13 @@ if ($lang_id == 'en-US') {
 
 
 <div class="container-fluid  " id="news">
-    <div class="row" style="padding: 100px;">
+    <div class="row" style="padding: 30px; 60px">
         <div class="large-12 twelve columns">
-            <h1 class="ds-main-name uppercase text-left"
-                style="color:#1D386B  !important; font-family: <?= $font_family ?>"><?= $newsTitle; ?></h1>
+            <h1 class="ds-main-name uppercase text-left" style="color:#1D386B  !important; font-family: <?= $font_family ?>">
+                <a href="web/news_full/">
+                <?= $newsTitle; ?>
+                </a>
+            </h1>
         </div>
     </div>
 
@@ -694,36 +702,43 @@ if ($lang_id == 'en-US') {
         <div class="row">
             <?php foreach ($news as $row) { ?>
                 <?php
+                $postId = $row['id'];
+
                 if ($lang_id == 'ka-GE') {
-                    $newsTitle = addslashes(trim($row['name_ge']));
-                    $newsDesc = addslashes(trim($row['content_ge']));
+                    $newsTitle = $row['name_ge'];
+                    $newsDesc = $row['content_ge'];
                     $font_family = 'bpg-web-001-caps !important';
+                    $path = '@web/uploads/news/' . $row['img'];
                 } else if ($lang_id == 'en-US') {
-                    $newsTitle = addslashes(trim($row['name']));
-                    $newsDesc = addslashes(trim($row['content']));
+                    $newsTitle = $row['name'];
+                    $newsDesc = $row['content_ge'];
                     $font_family = 'nexa !important';
+                    $path = '@web/uploads/news/'.$row['img'];
                 }
                 ?>
                 <div class="large-4 four columns">
-                    <a data-fancybox data-animation-duration="700" style="font-family:<?= $font_family ?>" data-src="#newsModal<?= $row->id ?>" href="javascript:;" class="provideLink">
+                    <a data-fancybox data-animation-duration="700" style="font-family:<?= $font_family ?>" data-src="#newsModal<?= $postId ?>" href="javascript:;" class="provideLink">
                     <div class="thumbnail">
-                        <?php $pathnews = '' . $row['img'] ?>
-                        <?= Html::img($pathnews, ['alt' => $newsTitle,  'style' => '  max-height: 220px;width: 100%;object-fit: cover;']); ?>
-                        <div class="caption" style="height: 348px; overflow: hidden;">
-                            <h3><?= str_replace("\\", "",$newsTitle) ?></h3>
-                            <p><?= $newsDesc ?></p>
+
+                        <?= Html::img($path, ['alt' => $newsTitle,  'style' => '']); ?>
+
+                        <div class="caption">
+                            <h2 style="color: #1D386B !important;font-family: <?= $font_family ?>; line-height: inherit"><?= $newsTitle ?></h2>
+<!--                            <p>--><?//= $newsDesc ?><!--</p>-->
                             <p><?= $row['date'] ?></p>
                         </div>
                     </div>
-                        </a>
+                    </a>
                 </div>
-                <div style="display: none; border-radius: 0px !important; padding: 0px !important;" id="newsModal<?= $row->id ?>" class="animated-modal modaluriza">
-                    <div class="large-12 twelve columns" style=" min-height: 350px; padding-left: 0px !important; padding-right: 0px !important;">
+                <div style="display: none; border-radius: 0px !important; padding: 0px !important;" id="newsModal<?= $postId ?>" class="animated-modal modaluriza">
+                    <div class="large-12 twelve columns" style=" height: 100%; padding-left: 0px !important; padding-right: 0px !important;">
+
                         <div style="position: relative; top: 30px ;width: 100%; padding: 0 20px">
-                            <?php $pathnews = '' . $row['img'] ?>
-                            <?= Html::img($pathnews, ['alt' => $newsTitle,  'style' => 'max-width: 600px; max-height: 400;object-fit: cover; float:left; margin:0 30px 30px 0']); ?>
-                            <h1 style="color: #1D386B !important;font-family: <?= $font_family ?>;"><?= str_replace("\\", "",$newsTitle) ?></h1>
-                            <?= $newsDesc; ?>
+                            <h2 style="color: #1D386B !important;font-family: <?= $font_family ?>; line-height: inherit"><?= $newsTitle ?></h2>
+                            <?= Html::img($path, ['alt' => $newsTitle,  'class' => 'img-fluid', 'style' => ' tex-align:center; padding:20px ']); ?>
+                            <p><?= $newsDesc ?></p>
+                            <p><?= $row['date'] ?></p>
+                            <p>&nbsp;</p>
                         </div>
                     </div>
                 </div>

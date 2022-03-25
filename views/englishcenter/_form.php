@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-
+    
 
     <?= $form->field($model, 'generalenglish')->dropDownList([ '0', '1', ], ['prompt' => '']) ?>
 

@@ -11,6 +11,7 @@ use yii\db\ActiveRecord;
  * @property string $description
  * @property string $name
  * @property string $image
+ * @property string $img
  * @property mixed $birthdate
  */
 class Items extends ActiveRecord

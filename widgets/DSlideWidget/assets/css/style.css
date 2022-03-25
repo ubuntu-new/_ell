@@ -22,6 +22,7 @@
 .ds-main-name
 {
     color: #ffffff !important;
+    font-size: 1.3vw;
 }
 .ds-main-title > h3
 {
@@ -45,6 +46,7 @@
     display: none;
     position: relative;
     margin: auto;
+    float: left !important;
 }
 
 .ds-main-title, .ds-main-desc {
@@ -54,7 +56,10 @@
     line-height: 22px;
     font-family: Nexa;
 }
-
+.ds-main-desc p
+{
+    float: left !important;
+}
 .ds-items-container {
     background-color: #f2f2f2;
     padding: 20px 30px !important;

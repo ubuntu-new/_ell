@@ -4,10 +4,10 @@ use yii\base\Widget;
 
 class DSlideWidget extends Widget
 {
-
     public $items;
     public $title;
     public $description;
+    public $position;
     public $font_family;
     public $background = '#1d386b';
     public $radius = 0;
@@ -30,6 +30,7 @@ class DSlideWidget extends Widget
             'items' => $this->items,
             'title' => $this->title,
             'description' => $this->description,
+            'position' => $this->position,
             'font_family' => $this->font_family,
             'background' => $this->background,
             'radius' => $this->radius,

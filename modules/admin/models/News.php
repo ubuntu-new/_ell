@@ -56,7 +56,7 @@ class News extends \yii\db\ActiveRecord
             'content_ge' => Yii::t('contact', 'Content Ge'),
             'keywords' => Yii::t('contact', 'Keywords'),
             'description' => Yii::t('contact', 'Description'),
-            'img' => Yii::t('contact', 'Img (600 X 400)'),
+            'img' => Yii::t('contact', 'Img (900 X 600)'),
             'hit' => Yii::t('contact', 'Hit'),
             'date' => Yii::t('contact', 'Date'),
             'url' => Yii::t('contact', 'Url'),

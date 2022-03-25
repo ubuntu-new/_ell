@@ -53,11 +53,12 @@ class Items extends \yii\db\ActiveRecord
     {
         return [
             [['title', 'title_ge','name', 'name_ge','description','description_ge'], 'string'],
-            [['title', 'title_ge','name', 'name_ge'], 'required'],
-            [['birthdate','description','description_ge','image'], 'safe'],
+            [['title', 'title_ge'], 'required'],
+            [['birthdate','description','description_ge','image','name', 'name_ge','image'], 'safe'],
             [['name', 'image', 'position', 'name_ge'], 'string', 'max' => 255],
             [['item_key'], 'string', 'max' => 20],
             [['img'], 'file','skipOnEmpty' => true, 'extensions'=>'jpg, png, gif'],
+            [['image'], 'file','skipOnEmpty' => true, 'extensions'=>'jpg, png, gif'],
         ];
     }
 

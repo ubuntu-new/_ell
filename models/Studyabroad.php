@@ -56,9 +56,9 @@ class Studyabroad extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Full Name',
-            'bday' => 'Date of Birth',
-            'phone' => 'Tel',
-            'email' => 'Email',
+            'bday' => 'Birth Day',
+            'phone' => 'Phone Number',
+            'email' => 'E-mail',
             'uk' => 'United Kingdome',
             'usa' => 'the USA',
             'canada' => 'Canada',
